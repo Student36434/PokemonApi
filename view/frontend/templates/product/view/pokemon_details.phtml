@@ -1,0 +1,65 @@
+<?php
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product view template
+ *
+ * @var $block Description
+ */
+
+use Magento\Catalog\Block\Product\View\Description;
+use Magento\Catalog\Model\Product;
+
+?>
+<?php
+// phpcs:ignore
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+
+if (!$_product instanceof Product) {
+    return;
+}
+
+$_call = $block->getAtCall();
+$_code = $block->getAtCode();
+$_className = $block->getCssClass();
+$_attributeLabel = $block->getAtLabel();
+$_attributeType = $block->getAtType();
+$_attributeAddAttribute = $block->getAddAttribute();
+
+$renderLabel = true;
+// if defined as 'none' in layout, do not render
+if ($_attributeLabel == 'none') {
+    $renderLabel = false;
+}
+
+if ($_attributeLabel && $_attributeLabel == 'default') {
+    $_attributeLabel = $_product->getResource()->getAttribute($_code)->getStoreLabel();
+}
+if ($_attributeType && $_attributeType == 'text') {
+    $_attributeValue = ($_helper->productAttribute($_product, $_product->$_call(), $_code))
+        ? $_product->getAttributeText($_code)
+        : '';
+} else {
+    $_attributeValue = $_product->getResource()->getAttribute($_code)->getFrontend()->getValue($_product) ?: null;
+}
+
+if ($_attributeValue) {
+    $viewModel = $block->getData('pokemon_data');
+    $pokemonDetails = $viewModel->getPokemonDetails($_attributeValue);
+}
+?>
+
+<?php if ($_attributeValue && $pokemonDetails): ?>
+    <div class="product detailed <?= $block->escapeHtmlAttr($_className) ?>">
+        <table>
+        <?php foreach ($pokemonDetails as $key => $value): ?>
+            <tr>
+                <td><?= $block->escapeHtml($key) ?></td>
+                <td><?= /* @noEscape */ $value ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </table>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="vovchenko" translate="label" sortOrder="10">
+            <label>Vovchenko</label>
+        </tab>
+        <section id="pokemon_api" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Pokemon API Configuration</label>
+            <tab>vovchenko</tab>
+            <resource>Vovchenko_PokemonApi::config_pokemon_api</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>General Configuration</label>
+                <field id="base_url" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>PokeAPI Base URL</label>
+                    <validate>required-entry validate-url</validate>
+                    <comment>Enter the base URL for PokeAPI (e.g., https://pokeapi.co/api/v2/)</comment>
+                </field>
+                <field id="resource_name" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>PokeAPI Resource Name</label>
+                    <comment>Enter the resource name for pokemon (e.g., pokemon/)</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

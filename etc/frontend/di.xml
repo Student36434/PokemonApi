@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="modify_product_name" type="Vovchenko\PokemonApi\Plugin\Catalog\Model\Product"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\ImageFactory">
+        <plugin name="product_pokemon_image" type="Vovchenko\PokemonApi\Plugin\Block\Product\ProductImage"/>
+    </type>
+</config>
