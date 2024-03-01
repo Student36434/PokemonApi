@@ -8,7 +8,7 @@
     "magento/module-catalog": "104.0.*"
   },
   "license": [
-    "Proprietary"
+    "Open Software License (OSL)"
   ],
   "autoload": {
     "files": [
